@@ -1,0 +1,76 @@
+<!doctype html>
+<html data-saved="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link id="icon-font" rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.42.0/dist/tabler-icons.min.css" media="print"
+    onload="this.media='all'"><noscript>
+    <link id="icon-font" rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.42.0/dist/tabler-icons.min.css">
+  </noscript>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body><svg class="visually-hidden-svg" aria-hidden="true">
+    <defs>
+      <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6"
+        orient="auto-start-reverse">
+        <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </marker>
+    </defs>
+  </svg>
+  <div id="vis-container">
+    <h2 class="sr-only">Simulator pipeline NuroPulse. Atur sinyal tiruan, lalu lihat tahap mentah, resample, filter, dan
+      spektrum, beserta fitur, quality gate, dan keputusan.</h2>
+
+
+    <div class="row"><label for="c1">Tremor, amplitudo</label><input type="range" id="c1" min="0" max="0.5" step="0.05"
+        value="0.2"><span class="v" id="c1v"></span></div>
+    <div class="row"><label for="c5">Tremor, frekuensi</label><input type="range" id="c5" min="3" max="8" step="0.5"
+        value="5"><span class="v" id="c5v"></span></div>
+    <div class="row"><label for="c2">Gerakan lambat (0,5 Hz)</label><input type="range" id="c2" min="0" max="2"
+        step="0.1" value="0.4"><span class="v" id="c2v"></span></div>
+    <div class="row"><label for="c3">Noise sensor</label><input type="range" id="c3" min="0" max="0.4" step="0.05"
+        value="0.1"><span class="v" id="c3v"></span></div>
+    <div class="row"><label for="c4">Data hilang 300 ms</label><input type="checkbox" id="c4"></div>
+
+    <div class="stage-selector">
+      <button class="sb on" data-s="1">1 Mentah</button>
+      <button class="sb" data-s="2">2 Resample</button>
+      <button class="sb" data-s="3">3 Filter</button>
+      <button class="sb" data-s="4">4 Spektrum</button>
+    </div>
+    <svg id="plot" viewBox="0 0 680 210" width="100%" role="img" aria-label="Grafik tahap pipeline yang dipilih"></svg>
+    <p class="cap" id="cap"></p>
+
+    <div class="grid">
+      <div class="m">
+        <div class="ml">Frekuensi puncak</div>
+        <div class="mv" id="m1"></div>
+      </div>
+      <div class="m">
+        <div class="ml">Porsi energi pita tremor</div>
+        <div class="mv" id="m2"></div>
+      </div>
+      <div class="m">
+        <div class="ml">Puncak vs lantai noise</div>
+        <div class="mv" id="m3"></div>
+      </div>
+      <div class="m">
+        <div class="ml">Konsistensi segmen</div>
+        <div class="mv" id="m4"></div>
+      </div>
+    </div>
+    <div id="gates"></div>
+    <div id="dec"></div>
+    <p class="cap disclaimer">Satu sumbu saja, dan ambang di sini hanya ilustrasi, bukan hasil kalibrasi.
+    </p>
+
+    <script src="script.js"></script>
+  </div>
+</body>
+
+</html>
